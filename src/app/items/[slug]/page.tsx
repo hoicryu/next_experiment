@@ -11,7 +11,7 @@ export default function ItemShow({ params }: Props) {
   if (itemId == "4") {
     notFound();
   }
-  return <div>아이템{itemId}의 상세정보</div>;
+  return <div>아이템{itemId}의 상세정보!!!</div>;
 }
 
 export async function generateStaticParams() {
