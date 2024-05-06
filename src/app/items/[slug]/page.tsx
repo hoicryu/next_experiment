@@ -6,6 +6,13 @@ type Props = {
   };
 };
 
+export function generateMetadata({ params }: Props) {
+  return {
+    title: `테스트 제품 제품 이름`,
+    description: `제품 이름: ${params.slug}`,
+  };
+}
+
 export default function ItemShow({ params }: Props) {
   const itemId = params.slug;
   if (itemId == "4") {
