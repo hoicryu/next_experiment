@@ -8,6 +8,8 @@ export default function Counter() {
     setCount(count + 1);
   }
 
+  console.log("클라 콘솔");
+
   return (
     <>
       <span>{count}</span>

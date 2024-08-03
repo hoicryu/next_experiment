@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { getItems } from "../service/items";
 
 export const metadata: Metadata = {
   title: "아이템 페이지",
@@ -11,18 +12,14 @@ export default function ItemLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const categories = [
-    { id: 1, title: "식품" },
-    { id: 2, title: "생필품" },
-    { id: 3, title: "의류" },
-  ];
+  const items = getItems();
   return (
     <div>
       <div className="my-4">
         <ul className="flex justify-around">
-          {categories.map((category, index) => (
-            <li key={`category-${index}`}>
-              <Link href={`/items/${category.id}`}>{category.title}</Link>
+          {items.map((item, index) => (
+            <li key={`item-${index}`}>
+              <Link href={`/items/${item.id}`}>{item.title}</Link>
             </li>
           ))}
         </ul>

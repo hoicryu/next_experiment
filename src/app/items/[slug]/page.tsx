@@ -1,3 +1,4 @@
+import { getItem, getItems } from "@/app/service/items";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -6,24 +7,29 @@ type Props = {
   };
 };
 
-export function generateMetadata({ params }: Props) {
+type Item = {
+  id: number;
+  title: string;
+};
+
+export function generateMetadata({ params: { slug } }: Props) {
   return {
     title: `테스트 제품 제품 이름`,
-    description: `제품 이름: ${params.slug}`,
+    description: `제품 이름: ${slug}`,
   };
 }
 
-export default function ItemShow({ params }: Props) {
-  const itemId = params.slug;
-  if (itemId == "4") {
-    notFound();
-  }
-  return <div>아이템{itemId}의 상세정보!!!</div>;
+export default function ItemShow({ params: { slug } }: Props) {
+  // 서버파일에 있는 데이터 중 해당 제품의 정보를 찾아서 렌더
+  const item = getItem(slug);
+  if (!item) notFound();
+  return <div>{item.title}의 상세정보!!!</div>;
 }
 
 export async function generateStaticParams() {
-  const items = ["1", "2", "3"];
-  return items.map((item) => ({
-    slug: item,
+  // 제품의 페이지들을 미리 만들어 둘 수 있게 해줄 것 (SSG)
+  const items = getItems();
+  return items.map((item: Item) => ({
+    slug: item.title,
   }));
 }
