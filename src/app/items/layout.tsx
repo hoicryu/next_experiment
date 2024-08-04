@@ -7,19 +7,21 @@ export const metadata: Metadata = {
   description: "아이템들을 판매하는곳입니다.",
 };
 
-export default function ItemLayout({
+export default async function ItemLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const items = getItems();
+  const items = await getItems();
   return (
     <div>
       <div className="my-4">
         <ul className="flex justify-around">
           {items.map((item, index) => (
             <li key={`item-${index}`}>
-              <Link href={`/items/${item.id}`}>{item.title}</Link>
+              <Link
+                href={`/items/${item.id}`}
+              >{`${item.title} : ${item.price}원`}</Link>
             </li>
           ))}
         </ul>

@@ -7,11 +7,6 @@ type Props = {
   };
 };
 
-type Item = {
-  id: number;
-  title: string;
-};
-
 export function generateMetadata({ params: { slug } }: Props) {
   return {
     title: `테스트 제품 제품 이름`,
@@ -19,17 +14,16 @@ export function generateMetadata({ params: { slug } }: Props) {
   };
 }
 
-export default function ItemShow({ params: { slug } }: Props) {
+export default async function ItemShow({ params: { slug } }: Props) {
   // 서버파일에 있는 데이터 중 해당 제품의 정보를 찾아서 렌더
-  const item = getItem(slug);
+  const item = await getItem(slug);
   if (!item) notFound();
   return <div>{item.title}의 상세정보!!!</div>;
 }
 
 export async function generateStaticParams() {
-  // 제품의 페이지들을 미리 만들어 둘 수 있게 해줄 것 (SSG)
-  const items = getItems();
-  return items.map((item: Item) => ({
-    slug: item.title,
+  const items = await getItems();
+  return items.map((item) => ({
+    slug: item.id,
   }));
 }
