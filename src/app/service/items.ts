@@ -16,6 +16,5 @@ export async function getItems(): Promise<Item[]> {
 export async function getItem(id: string) {
   const itmes = await getItems();
   const item = itmes.find((item) => item.id === id);
-  console.log(item);
   return item;
 }
