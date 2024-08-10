@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getItems } from "../service/items";
+import ErrBtn from "../components/ErrBtn";
 
 export const metadata: Metadata = {
   title: "아이템 페이지",
@@ -27,6 +28,7 @@ export default async function ItemLayout({
         </ul>
       </div>
       <div>{children}</div>
+      <ErrBtn />
     </div>
   );
 }
