@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans, Nanum_Gothic } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = Open_Sans({ subsets: ["latin"] });
+const gothic = Nanum_Gothic({ subsets: ["latin"], weight: "700" });
 
 export const metadata: Metadata = {
   title: "넥스트 실험소",
@@ -18,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head></head>
-      <body className={inter.className}>
+      <body className={sans.className}>
         <header className="px-10 py-5 flex justify-between bg-black text-white">
-          <h1>테스트용 앱</h1>
+          <h1 className={gothic.className}>테스트용 앱</h1>
           <nav>
             <Link href="/items" className="mr-4">
               Item
