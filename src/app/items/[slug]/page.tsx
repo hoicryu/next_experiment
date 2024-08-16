@@ -2,6 +2,7 @@ import { getItem, getItems } from "@/app/service/items";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import cabbageImg from "/public/images/Cabbage_kimchi.jpg";
+import GoItemsBtn from "@/app/components/GoItemsBtn";
 
 export const revalidate = 3;
 
@@ -19,7 +20,6 @@ export function generateMetadata({ params: { slug } }: Props) {
 }
 
 export default async function ItemShow({ params: { slug } }: Props) {
-  // 서버파일에 있는 데이터 중 해당 제품의 정보를 찾아서 렌더
   const item = await getItem(slug);
   if (!item) notFound();
   return (
@@ -32,6 +32,7 @@ export default async function ItemShow({ params: { slug } }: Props) {
         height={100}
         alt="img"
       />
+      <GoItemsBtn />
     </>
   );
 }
