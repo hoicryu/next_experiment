@@ -29,6 +29,18 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/i/:slug",
+        destination: "/items/:slug",
+      },
+      {
+        source: "/info",
+        destination: "/contact/company/info",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
